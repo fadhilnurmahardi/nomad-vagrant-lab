@@ -1,8 +1,4 @@
 # HashiCorp Nomad - Local Lab Using Vagrant
-
-### Accompanying blog for the initial setup:  https://discoposse.com/2019/11/21/building-a-hashicorp-nomad-cluster-lab-using-vagrant-and-virtualbox/
-### Pluralsight course - Getting Started with HashiCorp Nomad:  https://app.pluralsight.com/library/courses/hashicorp-nomad-getting-started/table-of-contents
-
 ## What is this?
 
 A simple 3-node or 6-node lab running Ubuntu servers on VirtualBox and each node runs Consul and Nomad servers which can be configured as a cluster.
@@ -34,16 +30,7 @@ There are a few things you need to get this going:
 
 To start your Nomad cluster just do this: 
 
-* Connect to the first node (either nomad-a-1 or nomad-b-1) using the `vagrant up` using `vagrant ssh <nodename>` where `<nodename>` is the instance name (e.g. nomad-a-1, nomad-b-1).
-* Change directory to the /vagrant folder using `cd /vagrant`
-* Launch Nomad using the shell script which is `sudo <nodename>.sh` where `<nodename>` is the node you are running on (e.g. `sudo launch-a-1.sh`)
-* Connect to the remaining two nodes (nomad-a-2, nomad-a-3) and repeat the process of changing to the /vagrant folder and running the appropriate launch script
-
-The first node in each of the set of three will begin as the leader.  The other two node launch scripts have a `nomad server join` command to join the cluster with the first node.  
-
-Once you're used to the commmands, you can start and stop as much as needed.  
-
-Consul is installed but not used for the basic configuration.  More to come on that.
+* `vagrant ssh <node_name> -c "sudo /vagrant/launch-nomad-consul.sh"` where `<nodename>` is the instance name (e.g. nomad-a-1, nomad-b-1).
 
 Now you're running!
 
