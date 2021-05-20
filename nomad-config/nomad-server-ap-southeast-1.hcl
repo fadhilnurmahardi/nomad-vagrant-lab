@@ -11,9 +11,9 @@ datacenter = "sg"
 region = "ap-southeast-1"
 
 advertise {
-  http = "{{ GetInterfaceIP `eth1` }}"
-  rpc  = "{{ GetInterfaceIP `eth1` }}"
-  serf = "{{ GetInterfaceIP `eth1` }}"
+  http = "{{ GetInterfaceIP `enp0s8` }}"
+  rpc  = "{{ GetInterfaceIP `enp0s8` }}"
+  serf = "{{ GetInterfaceIP `enp0s8` }}"
 }
 
 plugin "raw_exec" {
@@ -24,6 +24,6 @@ plugin "raw_exec" {
 
 client {
   enabled           = true
-  network_interface = "eth1"
+  network_interface = "enp0s8"
   servers           = ["172.16.1.101", "172.16.1.102", "172.16.1.103"]
 }
