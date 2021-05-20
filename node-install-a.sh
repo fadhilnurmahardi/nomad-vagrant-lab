@@ -11,7 +11,7 @@ fi
 echo "Docker Install Beginning..."
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  sudo apt-key add -
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
 sudo add-apt-repository \
       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -25,8 +25,7 @@ sudo usermod -aG docker vagrant
 sudo docker --version
 
 echo "Nomad Install Beginning..."
-# For now we use a static version. Set to the latest tested version you want here.
-NOMAD_VERSION=0.9.5
+NOMAD_VERSION=1.1.0
 cd /tmp/
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 if [ ! -d nomad ]; then
@@ -41,13 +40,11 @@ fi
 sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
-sudo cp /vagrant/nomad-config/nomad-server-east.hcl /etc/nomad.d/
+sudo cp /vagrant/nomad-config/nomad-server-ap-southeast-1.hcl /etc/nomad.d/
 
 echo "Consul Install Beginning..."
-# Uncommend the first and comment the second line to get the latest edition
-# Otherwise use the static number
-CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
-#CONSUL_VERSION=1.4.0
+# CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
+CONSUL_VERSION=1.9.5
 sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
 if [ ! -d consul ]; then
   sudo unzip /tmp/consul.zip
@@ -61,7 +58,7 @@ fi
 sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
-sudo cp /vagrant/consul-config/consul-server-east.hcl /etc/consul.d/
+sudo cp /vagrant/consul-config/consul-server-ap-southeast-1.hcl /etc/consul.d/
 
 for bin in cfssl cfssl-certinfo cfssljson
 do

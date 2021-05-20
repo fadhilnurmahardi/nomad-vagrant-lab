@@ -1,13 +1,10 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure(2) do |config|
-  config.vm.box = "bento/ubuntu-16.04" # 16.04 LTS
+  config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |vb|
-        vb.memory = "1516"
+    vb.memory = "1516"
   end
 
-  # 3-node configuration - Region A
+  # 3-node configuration - Region ap-southeast-1
   (1..3).each do |i|
     config.vm.define "nomad-a-#{i}" do |n|
       n.vm.provision "shell", path: "node-install-a.sh"

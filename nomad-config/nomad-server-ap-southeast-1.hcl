@@ -6,9 +6,9 @@ server {
   job_gc_threshold = "2m"
 }
 
-datacenter = "toronto"
+datacenter = "sg"
 
-region = "east"
+region = "ap-southeast-1"
 
 advertise {
   http = "{{ GetInterfaceIP `eth1` }}"
