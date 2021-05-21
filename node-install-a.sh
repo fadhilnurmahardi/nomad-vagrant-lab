@@ -24,6 +24,9 @@ sudo service docker restart
 sudo usermod -aG docker vagrant
 sudo docker --version
 
+echo "aws creds helper install.."
+sudo apt install amazon-ecr-credential-helper -y
+
 echo "Nomad Install Beginning..."
 NOMAD_VERSION=1.1.0
 cd /tmp/
@@ -59,6 +62,23 @@ sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
 sudo cp /vagrant/consul-config/consul-server-ap-southeast-1.hcl /etc/consul.d/
+
+echo "Vault Install Beginning..."
+VAULT_VERSION=1.7.1
+sudo curl -sSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip > vault.zip
+if [ ! -d vault ]; then
+  sudo unzip /tmp/vault.zip
+fi
+if [ ! -f /usr/bin/vault ]; then
+  sudo install vault /usr/bin/vault
+fi
+if [ -f /tmp/archive/vault ]; then
+  sudo rm /tmp/archive/vault
+fi
+sudo mv /tmp/vault /tmp/archive/vault
+sudo mkdir -p /etc/vault.d
+sudo chmod a+w /etc/vault.d
+sudo cp /vagrant/vault-config/vault-server-ap-southeast-1.hcl /etc/vault.d/default.hcl
 
 for bin in cfssl cfssl-certinfo cfssljson
 do

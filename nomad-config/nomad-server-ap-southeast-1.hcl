@@ -27,3 +27,9 @@ client {
   network_interface = "enp0s8"
   servers           = ["172.16.1.101", "172.16.1.102", "172.16.1.103"]
 }
+
+consul {
+  address = "{{ GetInterfaceIP `enp0s8` }}:8500"
+  auth    = "admin:password"
+  token   = "abcd1234"
+}
