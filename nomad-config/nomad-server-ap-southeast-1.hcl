@@ -29,7 +29,5 @@ client {
 }
 
 consul {
-  address = "{{ GetInterfaceIP `enp0s8` }}:8500"
-  auth    = "admin:password"
-  token   = "abcd1234"
+  address = "##IP_SERVER##:8500"
 }

@@ -150,6 +150,7 @@ PRIVATE_IP=$(hostname -I | awk '{print $2}')
 sudo sed -i "s/#DNS=/DNS=$PRIVATE_IP/g" "/etc/systemd/resolved.conf"
 sudo sed -i "s/#DNS=/DNS=$PRIVATE_IP/g" "/etc/systemd/resolved.conf"
 sudo sed -i "s/##IP_SERVER##/$PRIVATE_IP/g" "/etc/vault.d/default.hcl"
+sudo sed -i "s/##IP_SERVER##/$PRIVATE_IP/g" "/etc/nomad.d/default.hcl"
 sudo systemctl restart systemd-resolved.service
 systemctl restart vault
 systemctl restart nomad

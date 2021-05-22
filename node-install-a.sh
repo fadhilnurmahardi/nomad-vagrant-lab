@@ -43,7 +43,7 @@ fi
 sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
-sudo cp /vagrant/nomad-config/nomad-server-ap-southeast-1.hcl /etc/nomad.d/
+sudo cp /vagrant/nomad-config/nomad-server-ap-southeast-1.hcl /etc/nomad.d/default.hcl
 
 echo "Consul Install Beginning..."
 # CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
@@ -61,7 +61,7 @@ fi
 sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
-sudo cp /vagrant/consul-config/consul-server-ap-southeast-1.hcl /etc/consul.d/
+sudo cp /vagrant/consul-config/consul-server-ap-southeast-1.hcl /etc/consul.d/default.hcl
 
 echo "Vault Install Beginning..."
 VAULT_VERSION=1.7.1
