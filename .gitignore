@@ -4,4 +4,4 @@
 *.scratch
 playgroud/
 .terraform
-.tfstate
+*.tfstate
