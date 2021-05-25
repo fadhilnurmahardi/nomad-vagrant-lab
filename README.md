@@ -1,7 +1,7 @@
 # HashiCorp Nomad - Local Lab Using Vagrant
 ## What is this?
 
-A simple 3-node or 6-node lab running Ubuntu servers on VirtualBox and each node runs Consul and Nomad servers which can be configured as a cluster. And able to run vault to one node (currently cannot be clustered because use file storage)
+A simple 3-node or 6-node lab running Ubuntu servers on VirtualBox and each node runs Consul and Nomad servers which can be configured as a cluster. And able to run vault to one node (currently cannot be clustered because use file storage).
 
 ## Why use this method?
 
