@@ -7,3 +7,7 @@ client_addr      = "{{ GetInterfaceIP `enp0s8` }}"
 ui               = true
 datacenter       = "sg"
 retry_join       = ["172.16.1.101", "172.16.1.102", "172.16.1.103"]
+
+connect {
+  enabled = true
+}
