@@ -8,6 +8,10 @@ ui               = true
 datacenter       = "sg"
 retry_join       = ["172.16.1.101", "172.16.1.102", "172.16.1.103"]
 
+ports {
+  grpc = 8502
+}
+
 connect {
   enabled = true
 }
