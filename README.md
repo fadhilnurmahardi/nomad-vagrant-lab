@@ -57,3 +57,21 @@ open http://172.16.1.101:8500
 open http://172.16.1.101:8200
 ```
 
+## My Setup step
+
+* `vagrant up` for start vagrant
+
+* `vagrant ssh nomad-a-1 -c "sudo /vagrant/launch-services.sh --run-vault --init-vault" && vagrant ssh nomad-a-2 -c "sudo /vagrant/launch-services.sh" && vagrant ssh nomad-a-3 -c "sudo /vagrant/launch-services.sh"` for start all services (vault root_token can be found in `playgroud/vault`)
+
+* go to `vault-nomad-integration` and run `terraform apply` -> create policy and app role for nomad server
+
+* `vagrant ssh nomad-a-1 -c "AWS_KEY=xxx AWS_SECRET=xxx /vagrant/helpers/docker-ecr-integration.sh" && vagrant ssh nomad-a-2 -c "AWS_KEY=xxx AWS_SECRET=xxx /vagrant/helpers/docker-ecr-integration.sh" && vagrant ssh nomad-a-3 -c "AWS_KEY=xxx AWS_SECRET=xxx /vagrant/helpers/docker-ecr-integration.sh"` for setup integration to AWS ECR
+
+* `vagrant ssh nomad-a-1 -c "VAULT_TOKEN=root_token /vagrant/helpers/nomad-vault-integration.sh" && vagrant ssh nomad-a-2 -c "VAULT_TOKEN=root_token /vagrant/helpers/nomad-vault-integration.sh" && vagrant ssh nomad-a-3 -c "VAULT_TOKEN=root_token /vagrant/helpers/nomad-vault-integration.sh"` for setup integration between nomad and vault
+
+* `vagrant ssh nomad-a-1 -c "sudo /vagrant/helpers/install-cni-plugin.sh" && vagrant ssh nomad-a-2 -c "sudo /vagrant/helpers/install-cni-plugin.sh" && vagrant ssh nomad-a-3 -c "sudo /vagrant/helpers/install-cni-plugin.sh"` for install depedency (optional) if you use sidecar proxy you need to do it
+
+* `vagrant ssh nomad-a-1 -c "sudo /vagrant/helpers/nomad-bootsrap-token.sh"` to generate bootsrap token nomad -> result can be found in `nomad_bootsrap_token`
+
+After these step you'll have `Vault, Consul Cluster, Nomad Cluster (with integration to vault, aws ecr and ready to use sidecar proxy)`
+
