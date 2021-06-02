@@ -31,3 +31,7 @@ client {
 consul {
   address = "##IP_SERVER##:8500"
 }
+
+acl {
+  enabled = true
+}
